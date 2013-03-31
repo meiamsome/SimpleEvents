@@ -54,7 +54,7 @@ public class Command {
 			return this;
 		for(Command c: subs.keySet())
 			if(c.isCalled(cmds[depth])) {
-				if(permis.hasPermission(subs.get(c)))
+				if(subs.get(c) == null || permis.hasPermission(subs.get(c)))
 					return c;
 				return null; // Null => no permission.
 			}
@@ -65,7 +65,7 @@ public class Command {
 	public List<Command> getAble(Permissible permis) {
 		List<Command> ret = new ArrayList<Command>();
 		for(Command c: subs.keySet())
-			if(permis.hasPermission(subs.get(c))) ret.add(c);
+			if(subs.get(c) == null || permis.hasPermission(subs.get(c))) ret.add(c);
 		return ret;
 	}
 }
