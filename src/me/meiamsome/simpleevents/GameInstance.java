@@ -10,7 +10,9 @@ public abstract class GameInstance {
 	public GameInstance(Game par) {
 		parent = par;
 	}
+	
 	//public abstract void bail(String[] log);
+	// Bail is used if there's an error in the code interpretation.
 	public void bail(String[] log) {
 		File f = new File(parent.baseFolder, "errors.log");
 		FileWriter out;
