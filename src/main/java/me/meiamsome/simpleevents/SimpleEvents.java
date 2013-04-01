@@ -6,8 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class SimpleEvents extends JavaPlugin {
 	public static Logger log = Logger.getLogger("Minecraft");
+        
 	public void addListener(String substring) {
 		
 	}
+        
+        
 
 }

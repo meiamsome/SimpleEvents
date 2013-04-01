@@ -20,6 +20,7 @@ public class JavascriptGame extends Game {
 	SimpleEvents parent;
 	ScriptEngine engine;
 	private String scriptName;
+        
 	JavascriptGame(SimpleEvents parent, File folder) throws Exception {
 		super(parent,folder);
 		engine = new ScriptEngineManager().getEngineByName(getConfig().getString("ScriptEngine","JavaScript"));
