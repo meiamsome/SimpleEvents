@@ -24,6 +24,15 @@ public class ScheduleHandler {
             }
         }
         
+        public void removeSchedule(Game game){
+            if (game != null){
+                scheduled.remove(game);
+            } else {
+                if (game == null) throw new NullPointerException("Game cannot be null!");
+                else throw new NullPointerException();
+            }
+        }
+        
         /**
          * Returns the schedule of a game.
          * If no schedule was found, then null will be returned.

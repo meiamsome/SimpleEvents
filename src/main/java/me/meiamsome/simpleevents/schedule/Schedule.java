@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package me.meiamsome.simpleevents.schedule;
 
 import me.meiamsome.simpleevents.Game;
@@ -12,6 +8,8 @@ import me.meiamsome.simpleevents.Game;
  */
 public class Schedule {
     private Game game;
+    
+    
     
     public Schedule(Game game) {
         this.game = game;
