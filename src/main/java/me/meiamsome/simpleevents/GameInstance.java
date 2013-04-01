@@ -3,6 +3,7 @@ package me.meiamsome.simpleevents;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.logging.Level;
 
 public abstract class GameInstance {
 	Game parent;
@@ -19,7 +20,7 @@ public abstract class GameInstance {
 		try {
 			out = new FileWriter(f);
 		} catch (IOException e1) {
-			SimpleEvents.log.severe("Could not log error in game '"+parent.name+"'");
+			ErrorHandler.log(Level.SEVERE,"Could not log error in game '"+parent.name+"'",null);
 			return;
 		}
 		try {
@@ -27,7 +28,7 @@ public abstract class GameInstance {
 			for(String l: log) str += l + "\r\n";
 			out.append(str);
 		} catch(IOException e) {
-			SimpleEvents.log.severe("Could not log error in game '"+parent.name+"'");
+			ErrorHandler.log(Level.SEVERE,"Could not log error in game '"+parent.name+"'",null);
 		}
 		try {
 			out.close();
