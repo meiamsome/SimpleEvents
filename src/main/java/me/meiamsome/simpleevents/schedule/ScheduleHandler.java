@@ -1,8 +1,10 @@
 
 package me.meiamsome.simpleevents.schedule;
 
+import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
-import me.meiamsome.simpleevents.Game;
+import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -11,61 +13,60 @@ import org.bukkit.scheduler.BukkitTask;
  * @author Kabir
  */
 public class ScheduleHandler {
-      private ConcurrentHashMap<Schedule, Game> scheduled = new ConcurrentHashMap<Schedule, Game>();
+      private ConcurrentLinkedQueue<Schedule> scheduled = new ConcurrentLinkedQueue<Schedule>();
+      private ConcurrentHashMap<Schedule, BukkitTask> currentGameTasks = new ConcurrentHashMap<Schedule, BukkitTask>();
       private ConfigurationSection config;
-      private BukkitTask currentGameTask = null;
       
     
 	public ScheduleHandler(ConfigurationSection config) {
 		this.config = config;
 	}
         
-        
-        
-        
-        public void addSchedule(Schedule schedule, Game game){
-            if (game != null && schedule != null){
-                scheduled.put(schedule, game);
-            } else {
-                if (game == null) throw new NullPointerException("Game cannot be null!");
-                else if (schedule == null) throw new NullPointerException("Schedule cannot be null!");
-                else throw new NullPointerException();
-            }
+        public void addSchedule(Schedule schedule){
+            scheduled.offer(schedule);
         }
         
         public void removeSchedule(Schedule schedule){
             if (schedule != null){
                 scheduled.remove(schedule);
             } else {
-                if (schedule == null) throw new NullPointerException("Game cannot be null!");
+                if (schedule == null) throw new NullPointerException("Schedule cannot be null!");
                 else throw new NullPointerException();
             }
         }
         
         /**
-         * Returns a scheduled game
-         * If no game was found, then null will be returned.
+         * Polls the next schedule in the queue
+         * If no schedule was found, will return null.
          * @param game
          * @return 
          */
-        public Game getScheduledGame(Schedule schedule){
-            if (scheduled.containsKey(schedule)){
-                return scheduled.get(schedule);
-            } else {
-                return null;
-            }
+        public Schedule getNextSchedule(){
+            return scheduled.poll();
         }
         
-        public BukkitTask getCurrentGameTask() {
-        return currentGameTask;
+        /**
+         * Retrieves the game task from the gameTask hashmap.
+         * @param schedule
+         * @return 
+         */
+        public BukkitTask getGameTask(Schedule schedule){
+            if (currentGameTasks.containsKey(schedule))
+                return currentGameTasks.get(schedule);
+            else
+                return null;
+        }
+        
+        public Collection getCurrentGameTasks() {
+        return currentGameTasks.values();
         }
         
         /**
          * This will finish the repeating sync task.
          */
-        public void finishCurrentGameTask(){
-            currentGameTask.cancel();
-            currentGameTask = null;
+        public void finishCurrentGameTask(Schedule schedule){
+            if (currentGameTasks.containsKey(schedule))
+            currentGameTasks.get(schedule).cancel();
         }
         
         

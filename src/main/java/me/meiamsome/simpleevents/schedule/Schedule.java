@@ -48,7 +48,7 @@ public class Schedule implements Runnable{
             } catch (Exception ex) {
                 Logger.getLogger(Schedule.class.getName()).log(Level.SEVERE, null, ex);
             }
-            handler.getCurrentGameTask().cancel();
+            handler.getGameTask(this).cancel();
         } 
         
         if (pTimeLeft > 0){
