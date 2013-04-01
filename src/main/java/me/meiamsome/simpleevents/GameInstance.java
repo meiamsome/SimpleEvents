@@ -34,5 +34,6 @@ public abstract class GameInstance {
 			out.close();
 		} catch (IOException e) {}
 	}
+        
 
 }
