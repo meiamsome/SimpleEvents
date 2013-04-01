@@ -1,4 +1,3 @@
-
 package me.meiamsome.simpleevents;
 
 import org.bukkit.plugin.java.JavaPlugin;
