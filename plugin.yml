@@ -1,8 +1,0 @@
-name: SimpleEvents
-main: me.meiamsome.simpleevents.SimpleEvents
-version: 0.01
-authors: [meiamsome,NavidK0]
-commands:
- events:
-  aliases: ev
-  description: Event commands

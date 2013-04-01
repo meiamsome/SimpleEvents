@@ -17,7 +17,7 @@ public abstract class Game implements Listener {
 	public String name;
 
 	// Constructor. Every Game Type will have their own folder.
-	public Game(SimpleEvents parent, File folder) throws Exception {
+	public Game(File folder) throws Exception {
 		baseFolder = folder;
 		baseConfig = YamlConfiguration.loadConfiguration(new File(folder, "Config.yml"));
 		name = baseConfig.getString("Name");
