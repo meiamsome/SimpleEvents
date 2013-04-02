@@ -1,2 +1,37 @@
-#Something will go here
+#Schedule
 schedule:
+  repeating:
+    daily:
+      SupPeeps:
+        game: GameOfDoom
+        time: 2;00;PM
+      SecondEvent:
+        game: Grass Growing 2 Da Max
+        time:  2;10;PM
+      SwagMaster2002:
+        game: Get Some
+        time: 3;00;PM
+    weekly:
+      Losers:
+        game: Losing game
+        day: Tuesday
+        time: 2;00;PM
+    monthly:
+      MyLife:
+        game: Sims 2000
+        date: 4/4/2013
+        time: 2;00;PM
+    yearly:
+      MarioParty:
+        game: Warioware
+        date: 12/25/2013
+        time: 2;45;PM
+      EveryoneExplodesGame:
+        game: Yo
+        date: 12/21/2012
+        time: 12;12;PM
+  non-repeating:
+    deathNote:
+      game: Everyone dead
+      date: Yesteryear
+      time: Never

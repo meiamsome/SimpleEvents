@@ -1,6 +1,7 @@
 package me.meiamsome.simpleevents.schedule;
 
 import com.lastabyss.bukkit.utilities.Utilities;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import me.meiamsome.simpleevents.Game;
@@ -12,12 +13,23 @@ import org.bukkit.ChatColor;
  * @author Kabir
  */
 public class Schedule implements Runnable{
+    private String name;
     private Game game;
     private ScheduleHandler handler;
     private int prepareTime = 60;
     private int pTimeLeft = prepareTime;
+    private Date date;
     
     //Prepare time and timeLeft are both temporary until we can get this code interpretation sorted.
+   
+   public Schedule(String name, Game game, Date date, ScheduleHandler handler) {
+       this.game = game;
+       this.name = name;
+       this.date = date;
+       this.handler = handler;
+   }
+        
+        
     public void run() {
         //Game logic here
         if (prepareTime == pTimeLeft){
@@ -56,14 +68,19 @@ public class Schedule implements Runnable{
         }
         
     }
-    
-    public Schedule(Game game, ScheduleHandler handler) {
-        this.game = game;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setHandler(ScheduleHandler handler) {
+        this.handler = handler;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
-    
-    
-
     public Game getGame() {
         return game;
     }

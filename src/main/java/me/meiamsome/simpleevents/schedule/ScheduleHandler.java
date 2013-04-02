@@ -22,6 +22,14 @@ public class ScheduleHandler {
 		this.config = config;
 	}
         
+        public void initialize(){
+            config.getKeys(true);
+        }
+        
+        public void orderSchedules(){
+            
+        }
+        
         public void addSchedule(Schedule schedule){
             scheduled.offer(schedule);
         }
